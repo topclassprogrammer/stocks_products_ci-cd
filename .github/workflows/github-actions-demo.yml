@@ -2,7 +2,7 @@ name: Stocks Products Workflow
 run-name: ${{ github.actor }} is testing ${{ github.name }}
 on:
   push:
-    branches: [ $default-branch ]
+    branches: main
 jobs:
   build:
     runs-on: ubuntu-latest

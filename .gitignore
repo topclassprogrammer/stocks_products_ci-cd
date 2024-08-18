@@ -1,4 +1,7 @@
+__pycache__/
+env/
 .env
 .venv
 .idea
-stocks_products/__pycache__/
+.vscode/
+*.log
