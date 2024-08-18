@@ -23,6 +23,3 @@ class TestProducts(TestCase):
             removing_stock = Stock.objects.filter(
                 address='ул. Тестовая').delete()
             self.assertEqual(removing_stock[0], 1)
-
-
-
