@@ -38,7 +38,7 @@ jobs:
       - name: Линтинг кода
         run: flake8 --exclude migrations --ignore F401,E501
       - name: Создание БД
-        run: python createdb -U ${{ env.PG_USER }} ${{ env.POSTGRES_DB }}
+        run: psql -h ${{ env.PG_HOST }} -p ${{ env.PG_PORT }} -U ${{ env.PG_USER }} -c "CREATE DATABASE ${{ env.PG_NAME }};"
       - name: Наполнение БД фикстурами
         run: python manage.py loaddata stock_products.json
       - name: Тестирование
