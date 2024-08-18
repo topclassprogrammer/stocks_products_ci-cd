@@ -30,7 +30,7 @@ jobs:
       - name: Клонируем репозиторий
         uses: actions/checkout@v4
       - name: Установка Python
-        uses: action/setup-python@v5
+        uses: actions/setup-python@v5
         with:
           python-version: 3.12
       - name: Установка зависимостей
