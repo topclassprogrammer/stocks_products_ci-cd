@@ -38,7 +38,13 @@ jobs:
       - name: Линтинг кода
         run: flake8 --exclude migrations --ignore F401,E501
       - name: Создание БД
-        run: psql -h ${{ env.PG_HOST }} -p ${{ env.PG_PORT }} -U ${{ env.PG_USER }} -W ${{ env.PG_PASSWORD }} -c "CREATE DATABASE ${{ env.PG_NAME }};"
+        run: |
+          python manage.py shell
+          from sqlalchemy import create_engine
+          from sqlalchemy_utils import create_database
+          dsn = "postgresql://" + ${{ env.PG_USER }} + ":" + ${{ env.PG_PASSWORD }} + "@" + ${{ env.PG_HOST }} + ":" + ${{ env.PG_PORT }} + "/" + ${{ env.PG_NAME }}
+          engine = create_engine(dsn)
+          create_database(engine.url)
       - name: Наполнение БД фикстурами
         run: python manage.py loaddata stock_products.json
       - name: Тестирование
