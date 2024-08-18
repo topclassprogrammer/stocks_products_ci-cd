@@ -1,0 +1,4 @@
+.env
+.venv
+.idea
+stocks_products/__pycache__/
