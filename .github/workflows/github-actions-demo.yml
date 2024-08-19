@@ -37,14 +37,10 @@ jobs:
         run: python -m pip install -r requirements.txt
       - name: Линтинг кода
         run: flake8 --exclude migrations --ignore F401,E501
-      - name: Создание БД
-        env:
-          PG_NAME: ${{ env.PG_NAME }}
-          PG_HOST: ${{ env.PG_HOST }}
-          PG_PORT: ${{ env.PG_PORT }}
-          PG_USER: ${{ env.PG_USER }}
-          PG_PASSWORD: ${{ env.PG_PASSWORD }}
-        run: python create_db.py $PG_NAME $PG_HOST $PG_PORT $PG_USER $PG_PASSWORD
+      - name: Миграции
+        run: |
+          python manage.py makemigrations
+          python manage.py migrate
       - name: Наполнение БД фикстурами
         run: python manage.py loaddata stock_products.json
       - name: Тестирование
