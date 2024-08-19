@@ -5,6 +5,7 @@ on:
     branches: main
 jobs:
   build:
+    name: CI - тестовый деплой
     runs-on: ubuntu-latest
     env:
       PG_NAME: ${{ secrets.PG_NAME }}
@@ -43,14 +44,14 @@ jobs:
           python manage.py migrate
       - name: Наполнение БД фикстурами
         run: python manage.py loaddata stock_products.json
-      - name: Тестирование
+      - name: Юнит-тесты
         run: python manage.py test
   deploy:
-    name: Деплой кода на нашем сервере
+    name: CD - деплой в проде
     needs: build
     runs-on: ubuntu-latest
     steps:
-      - name: Подключаемся к нашему серверу
+      - name: Деплой кода на production-сервер
         uses: appleboy/ssh-action@master
         with:
           host: ${{ secrets.SSH_HOST }}
