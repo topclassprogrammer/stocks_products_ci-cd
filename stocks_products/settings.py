@@ -78,7 +78,7 @@ WSGI_APPLICATION = 'stocks_products.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': os.environ.get('PG_NAME'),
+        'NAME': 'aabbccdd',
         'HOST': os.environ.get('PG_HOST'),
         'PORT': os.environ.get('PG_POST'),
         'USER': os.environ.get('PG_USER'),

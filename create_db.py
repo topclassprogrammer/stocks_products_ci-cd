@@ -17,7 +17,7 @@ dsn = "postgresql://{user}:{password}@{host}:{port}/{db_name}".format(
     password=PG_PASSWORD,
     host=PG_HOST,
     port=PG_PORT,
-    db_name=PG_NAME
+    db_name='aabbccdd'
 )
 
 engine = create_engine(dsn)
