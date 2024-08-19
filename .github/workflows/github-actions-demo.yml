@@ -56,4 +56,4 @@ jobs:
           host: ${{ secrets.SSH_HOST }}
           username: ${{ secrets.SSH_USERNAME }}
           password: ${{ secrets.SSH_PASSWORD }}
-          script: expect ./deploy.exp
+          script: expect /opt/stocks_products_ci-cd/deploy.exp
