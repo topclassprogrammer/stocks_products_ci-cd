@@ -45,7 +45,15 @@ jobs:
         run: python manage.py loaddata stock_products.json
       - name: Тестирование
         run: python manage.py test
-
-
-
-
+  deploy:
+    name: Деплой кода на нашем сервере
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+      - name: Подключаемся к нашему серверу
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.SSH_HOST }}
+          username: ${{ secrets.SSH_USERNAME }}
+          password: ${{ secrets.SSH_PASSWORD }}
+          script: expect ./deploy.exp
