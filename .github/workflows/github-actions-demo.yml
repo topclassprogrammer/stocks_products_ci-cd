@@ -47,11 +47,11 @@ jobs:
       - name: Юнит-тесты
         run: python manage.py test
   deploy:
-    name: CD - деплой в проде
+    name: CD - деплой в прод
     needs: build
     runs-on: ubuntu-latest
     steps:
-      - name: Деплой кода на production-сервер
+      - name: Деплой кода на production-сервере
         uses: appleboy/ssh-action@master
         with:
           host: ${{ secrets.SSH_HOST }}
