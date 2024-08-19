@@ -39,7 +39,7 @@ jobs:
         run: flake8 --exclude migrations --ignore F401,E501
       - name: Создание БД
         run: |
-          python manage.py shell
+          python
           from sqlalchemy import create_engine
           from sqlalchemy_utils import create_database
           dsn = "postgresql://" + ${{ env.PG_USER }} + ":" + ${{ env.PG_PASSWORD }} + "@" + ${{ env.PG_HOST }} + ":" + ${{ env.PG_PORT }} + "/" + ${{ env.PG_NAME }}
